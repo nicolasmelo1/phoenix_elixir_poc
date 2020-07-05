@@ -1,0 +1,19 @@
+# Version of docker-compose
+version: '3'
+
+services:
+  web:
+    tty: true
+    volumes:
+      - .:/app
+    build:
+      context: .
+    command: mix phx.server
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
